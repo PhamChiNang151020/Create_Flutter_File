@@ -1,5 +1,6 @@
 import 'package:create_file_tool/page/config_page/config_page.dart';
 import 'package:create_file_tool/page/create_page/create_page.dart';
+import 'package:create_file_tool/page/set_env_page/set_env_page.dart';
 import 'package:create_file_tool/utils/key_storage.dart';
 import 'package:create_file_tool/utils/my_share_preferences.dart';
 import 'package:create_file_tool/widget/my_button.dart';
@@ -47,6 +48,17 @@ class _HomePageState extends State<HomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const CreateFilePage()),
+                  );
+                },
+              ),
+              const SizedBox(height: 20),
+              MyButton(
+                title: "Set ENV Flutter",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SetupEnvPage()),
                   );
                 },
               ),

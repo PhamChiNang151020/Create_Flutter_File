@@ -3,4 +3,5 @@
 class KeyStorage {
   static const String PROJECT_NAME = "project_name";
   static const String PROJECT_PATH = "project_path";
+  static const String ENV_PATH = "env_path";
 }

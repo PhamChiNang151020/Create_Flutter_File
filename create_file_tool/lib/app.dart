@@ -1,6 +1,7 @@
 import 'package:create_file_tool/page/config_page/config_page.dart';
 import 'package:create_file_tool/page/create_page/create_page.dart';
 import 'package:create_file_tool/page/home_page/home_page.dart';
+import 'package:create_file_tool/page/set_env_page/set_env_page.dart';
 import 'package:create_file_tool/utils/key_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -24,7 +25,8 @@ class _MyAppState extends State<MyApp> {
       routes: {
         HOME_PAGE: (context) => const HomePage(),
         CONFIG_PAGE: (context) => const ConfigPage(),
-        CREATE_FILE_PAGE: (context) => const CreateFilePage()
+        CREATE_FILE_PAGE: (context) => const CreateFilePage(),
+        ENV_PAGE: (context) => const SetupEnvPage(),
       },
     );
   }

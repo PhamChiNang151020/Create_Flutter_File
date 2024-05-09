@@ -1,12 +1,18 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:create_file_tool/model/folder_model.dart';
 import 'package:create_file_tool/template/template_file.dart';
 import 'package:create_file_tool/utils/key_storage.dart';
 import 'package:create_file_tool/utils/my_share_preferences.dart';
 import 'package:file_selector/file_selector.dart' as file_selector;
 
 class FileManager {
+  static Future<String?> chooseDirectory() async {
+    final directory = await file_selector.getDirectoryPath();
+    return directory;
+  }
+
   /// Asynchronously chooses a directory to store a file and creates the file with the given [fileName].
   ///
   /// The [fileName] parameter is required and represents the name of the file to be created.
@@ -97,5 +103,57 @@ class FileManager {
     final folderPath = await AppSharedPreferences()
         .getSharedPreferences(KeyStorage.PROJECT_PATH);
     await Process.run('open', [folderPath]);
+  }
+
+  static List<FolderData> getSubFolders(String folderPath) {
+    if (folderPath.isEmpty || folderPath == "") {
+      return [];
+    }
+    Directory directory = Directory(folderPath);
+    List<FileSystemEntity> subFolders = directory.listSync();
+    List<FolderData> folderDataList = [];
+    bool hasDefault = false;
+
+    for (var entity in subFolders) {
+      if (entity is Directory) {
+        String folderName = entity.path.split('/').last;
+        String versionName = formatVersionName(folderName);
+        String versionId = formatVersionId(folderName);
+        bool isDefault = folderName == "flutter";
+        if (isDefault && !hasDefault) {
+          hasDefault = true;
+          versionName = "";
+          versionId = "";
+        } else {
+          isDefault = false;
+        }
+        folderDataList.add(
+          FolderData(
+            id: folderName,
+            path: entity.path,
+            folderName: folderName,
+            isDefault: isDefault,
+            versionName: versionName,
+            versionId: versionId,
+          ),
+        );
+      }
+    }
+    // log(folderDataList);
+    return folderDataList;
+  }
+
+  static String formatVersionName(String input) {
+    String versionNumber = input.replaceAll("flutter_", "");
+
+    versionNumber = versionNumber.replaceAll("_", ".");
+
+    return "Version $versionNumber";
+  }
+
+  static String formatVersionId(String input) {
+    String versionNumber = input.replaceAll("flutter_", "");
+    versionNumber = versionNumber.replaceAll("_", ".");
+    return versionNumber;
   }
 }
