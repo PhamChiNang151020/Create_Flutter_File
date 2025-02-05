@@ -1,5 +1,5 @@
-import 'package:create_file_tool/page/config_page/config_page.dart';
 import 'package:create_file_tool/page/create_page/create_page.dart';
+import 'package:create_file_tool/page/create_page/create_page_v2.dart';
 import 'package:create_file_tool/page/set_env_page/set_env_page.dart';
 import 'package:create_file_tool/utils/key_storage.dart';
 import 'package:create_file_tool/utils/my_share_preferences.dart';
@@ -31,23 +31,37 @@ class _HomePageState extends State<HomePage> {
             children: [
               _setProjectName(),
               const SizedBox(height: 20),
-              MyButton(
-                  title: "Config Structure",
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ConfigPage()),
-                    );
-                  }),
+              // MyButton(
+              //     title: "Config Structure",
+              //     onPressed: () {
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) => const ConfigPage()),
+              //       );
+              //     }),
               const SizedBox(height: 20),
               MyButton(
-                title: "Create File",
+                title: "Create File Old",
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const CreateFilePage()),
+                      builder: (context) => const CreateFilePage(),
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 20),
+              MyButton(
+                title: "Create File New | > 3.24.3",
+                width: 300,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CreateFilePageV2(),
+                    ),
                   );
                 },
               ),

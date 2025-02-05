@@ -1,5 +1,6 @@
 import 'package:create_file_tool/page/config_page/config_page.dart';
 import 'package:create_file_tool/page/create_page/create_page.dart';
+import 'package:create_file_tool/page/create_page/create_page_v2.dart';
 import 'package:create_file_tool/page/home_page/home_page.dart';
 import 'package:create_file_tool/page/set_env_page/set_env_page.dart';
 import 'package:create_file_tool/utils/key_screen.dart';
@@ -26,6 +27,7 @@ class _MyAppState extends State<MyApp> {
         HOME_PAGE: (context) => const HomePage(),
         CONFIG_PAGE: (context) => const ConfigPage(),
         CREATE_FILE_PAGE: (context) => const CreateFilePage(),
+        CREATE_FILE_PAGE_V2: (context) => const CreateFilePageV2(),
         ENV_PAGE: (context) => const SetupEnvPage(),
       },
     );
